@@ -1,0 +1,20 @@
+# ==============================================================================
+# Whitelist / Lista de Permissões Globais
+# ==============================================================================
+# Domínios listados aqui NÃO serão bloqueados em nenhuma saída compilada.
+# Linhas iniciadas com '#' ou '!' são comentários.
+#
+# Exemplos úteis de exceções para evitar falsos positivos conhecidos:
+# (Descomente se você utiliza esses serviços e notar instabilidade)
+
+# Facebook Graph API (Necessário caso utilize "Entrar com Facebook" em apps terceiros):
+# graph.facebook.com
+
+# Deep linking SDK para apps mobile (Necessário se links de e-mails/promos não abrirem apps):
+# branch.io
+
+# Samsung Push Service (Necessário se alertas de Find My Mobile / SmartThings falharem):
+# sdk.pushmessage.samsung.com
+
+# Identificador de chamadas e detector de SPAM nativo da Samsung (Hiya Smart Call):
+# samsung-directory.edge.hiyaapi.com

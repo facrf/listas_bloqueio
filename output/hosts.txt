@@ -1,0 +1,66 @@
+# ==============================================================================
+# Title: Lista de Telemetria e Bloqueios - FACRF
+# Description: Bloqueio unificado e otimizado de telemetria, rastreadores, adnets e popups agressivos
+# Format: Hosts File (0.0.0.0)
+# Version: 1.3.0
+# Last Modified: 2026-08-23 14:05:43 UTC
+# Total Entries: 56
+# Homepage: https://github.com/facrf/listas_bloqueio
+# License: MIT
+# ==============================================================================
+0.0.0.0 adjust.com
+0.0.0.0 admachina.com
+0.0.0.0 adsterra.com
+0.0.0.0 an.facebook.com
+0.0.0.0 analytics.facebook.com
+0.0.0.0 api.gras.samsungdm.com
+0.0.0.0 api.omc.samsungdm.com
+0.0.0.0 app-measurement.com
+0.0.0.0 appsflyer.com
+0.0.0.0 appsflyersdk.com
+0.0.0.0 b-graph.facebook.com
+0.0.0.0 branch.io
+0.0.0.0 browser.events.data.msn.com
+0.0.0.0 connect.facebook.net
+0.0.0.0 crashlytics.com
+0.0.0.0 dc.di.atlas.samsung.com
+0.0.0.0 ddf.di.atlas.samsung.com
+0.0.0.0 dev-apigw.samsungdmroute.com
+0.0.0.0 diagmon-serviceapi.samsungdm.com
+0.0.0.0 diagnostics.support.microsoft.com
+0.0.0.0 dir-apis.samsungdm.com
+0.0.0.0 doubleclick.net
+0.0.0.0 dqa.samsung.com
+0.0.0.0 gamerhit.co
+0.0.0.0 google-analytics.com
+0.0.0.0 googlesyndication.com
+0.0.0.0 googletagservices.com
+0.0.0.0 gos-api.gos-gsp.io
+0.0.0.0 graph.instagram.com
+0.0.0.0 highcpmrevenuenetwork.com
+0.0.0.0 histats.com
+0.0.0.0 logging.meta.com
+0.0.0.0 mcsvc.samsung.com
+0.0.0.0 metrics.data.meta.com
+0.0.0.0 moai-dev-samsung.com
+0.0.0.0 onclickbright.com
+0.0.0.0 pipe.aria.microsoft.com
+0.0.0.0 pixel.facebook.com
+0.0.0.0 playerhq.co
+0.0.0.0 popads.net
+0.0.0.0 prmtracking.com
+0.0.0.0 qmds-dev-samsung.com
+0.0.0.0 regi.di.atlas.samsung.com
+0.0.0.0 samsung-directory.edge.hiyaapi.com
+0.0.0.0 samsungads.com
+0.0.0.0 samsungqbe.com
+0.0.0.0 sdk.pushmessage.samsung.com
+0.0.0.0 settings-win.data.microsoft.com
+0.0.0.0 sparkpcgames.com
+0.0.0.0 sspapi-prd.samsungrs.com
+0.0.0.0 stg-apigw.samsungdmroute.com
+0.0.0.0 telemetry.microsoft.com
+0.0.0.0 v10.events.data.microsoft.com
+0.0.0.0 v20.events.data.microsoft.com
+0.0.0.0 vortex.data.microsoft.com
+0.0.0.0 weptpuddingcurdle.com

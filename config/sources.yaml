@@ -1,0 +1,42 @@
+# ==============================================================================
+# Configuração de Metadados e Fontes - listas_bloqueio
+# ==============================================================================
+metadata:
+  title: "Lista de Telemetria e Bloqueios - FACRF"
+  description: "Bloqueio unificado e otimizado de telemetria, rastreadores, adnets e popups agressivos"
+  version: "1.3.0"
+  homepage: "https://github.com/facrf/listas_bloqueio"
+  license: "MIT"
+  maintainer: "FACRF"
+  redirect_ip: "0.0.0.0"
+
+files:
+  blacklist: "config/blacklist.txt"
+  whitelist: "config/whitelist.txt"
+  output_dir: "output"
+
+exports:
+  adguard:
+    filename: "adguard.txt"
+    format: "adguard"
+    description: "Formato AdGuard Home / Adblock Plus (suporta wildcards e subdomínios automáticos)"
+  pihole:
+    filename: "pihole.txt"
+    format: "domains"
+    description: "Lista de domínios FQDN puros compatível com Pi-hole Gravity"
+  hosts:
+    filename: "hosts.txt"
+    format: "hosts"
+    description: "Formato de arquivo Hosts padrão (0.0.0.0 dominio.com)"
+  pihole_regex:
+    filename: "pihole-regex.txt"
+    format: "regex"
+    description: "Expressões regulares para o Pi-hole (geradas a partir de regras wildcard)"
+  dnsmasq:
+    filename: "dnsmasq.conf"
+    format: "dnsmasq"
+    description: "Formato Dnsmasq (server=/dominio/ ou address=/dominio/0.0.0.0)"
+  unbound:
+    filename: "unbound.conf"
+    format: "unbound"
+    description: "Formato Unbound DNS (local-zone: dominio always_nxdomain)"

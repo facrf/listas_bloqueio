@@ -1,0 +1,95 @@
+# ==============================================================================
+# Blacklist Manual - Regras Curadas (listas_bloqueio)
+# ==============================================================================
+# Sintaxe suportada:
+# - FQDN puro: dominio.com
+# - Formato AdGuard/ABP: ||dominio.com^
+# - Wildcards de TLD: ||dominio.*^ ou dominio.*
+# - Comentários iniciados com # ou !
+
+# ==============================================================================
+# 1. TELEMETRIA E RASTREAMENTO GOOGLE & SDKs MOBILE
+# ==============================================================================
+googlesyndication.com
+google-analytics.com
+doubleclick.net
+googletagservices.com
+app-measurement.com
+crashlytics.com
+appsflyer.com
+appsflyersdk.com
+adjust.com
+branch.io
+
+# ==============================================================================
+# 2. TELEMETRIA SAMSUNG
+# ==============================================================================
+samsungads.com
+samsungqbe.com
+diagmon-serviceapi.samsungdm.com
+dev-apigw.samsungdmroute.com
+stg-apigw.samsungdmroute.com
+dqa.samsung.com
+dc.di.atlas.samsung.com
+regi.di.atlas.samsung.com
+ddf.di.atlas.samsung.com
+qmds-dev-samsung.com
+moai-dev-samsung.com
+gos-api.gos-gsp.io
+sspapi-prd.samsungrs.com
+mcsvc.samsung.com
+api.omc.samsungdm.com
+dir-apis.samsungdm.com
+api.gras.samsungdm.com
+sdk.pushmessage.samsung.com
+samsung-directory.edge.hiyaapi.com
+
+# ==============================================================================
+# 3. TELEMETRIA MICROSOFT
+# ==============================================================================
+telemetry.microsoft.com
+v10.events.data.microsoft.com
+v20.events.data.microsoft.com
+vortex.data.microsoft.com
+settings-win.data.microsoft.com
+watson.telemetry.microsoft.com
+pipe.aria.microsoft.com
+diagnostics.support.microsoft.com
+browser.events.data.msn.com
+
+# ==============================================================================
+# 4. TELEMETRIA E RASTREAMENTO META
+# ==============================================================================
+pixel.facebook.com
+an.facebook.com
+b-graph.facebook.com
+analytics.facebook.com
+connect.facebook.net
+logging.meta.com
+graph.instagram.com
+metrics.data.meta.com
+# graph.facebook.com # Desativado por padrão para evitar quebra de Login com Facebook (OAuth em apps de terceiros)
+
+# ==============================================================================
+# 5. SITES DE STREAMING ALTERNATIVO E TRACKERS
+# ==============================================================================
+darkmahou.*
+superanimes.*
+hinatasoul.*
+file4go.*
+sakuraanimes.*
+weptpuddingcurdle.com
+sparkpcgames.com
+gamerhit.co
+prmtracking.com
+playerhq.co
+admachina.com
+
+# ==============================================================================
+# 6. POP-UPS E REDIRECIONAMENTOS AGRESSIVOS
+# ==============================================================================
+popads.net
+adsterra.com
+onclickbright.com
+highcpmrevenuenetwork.com
+histats.com
