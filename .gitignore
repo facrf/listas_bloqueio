@@ -1,0 +1,107 @@
+# ==============================================================================
+# .gitignore - listas_bloqueio
+# ==============================================================================
+
+# Ambientes e Segredos
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.cert
+*.crt
+credentials.json
+secrets/
+
+# Arquivos Temporários e Scratch
+scratch/
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+*~
+*.orig
+*.rej
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Sistema Operacional
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# IDEs e Editores
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+.project
+.settings/
+*.komodoproject
+
+# Python (caso utilizado em scripts)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Node.js / JavaScript / TypeScript (caso utilizado)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# C / C++ / Compilação e Binários
+*.o
+*.obj
+*.so
+*.a
+*.la
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+build/
+bin/
+obj/
+dist/
+out/
+cmake-build-*/
+.cache/
+
+# Feeds brutos e dados temporários de download/cache
+downloads/
+raw_feeds/
+cache/
+data/cache/
+data/temp/
+*.cache
