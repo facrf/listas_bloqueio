@@ -7,18 +7,19 @@ Gera todas as listas multi-formato otimizadas para AdGuard Home, Pi-hole, Hosts 
 import argparse
 from pathlib import Path
 import sys
-from typing import Any, Dict
+from typing import Any, Dict, List
 
 # Importação dos módulos internos
 try:
     from src.parser import parse_file, parse_whitelist
     from src.deduplicator import deduplicate_and_optimize
+    from src.downloader import fetch_all_sources
     from src.exporter import (
         export_adguard,
+        export_dnsmasq,
         export_domains,
         export_hosts,
         export_pihole_regex,
-        export_dnsmasq,
         export_unbound,
     )
 except ImportError:
@@ -26,12 +27,13 @@ except ImportError:
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
     from src.parser import parse_file, parse_whitelist
     from src.deduplicator import deduplicate_and_optimize
+    from src.downloader import fetch_all_sources
     from src.exporter import (
         export_adguard,
+        export_dnsmasq,
         export_domains,
         export_hosts,
         export_pihole_regex,
-        export_dnsmasq,
         export_unbound,
     )
 
@@ -57,7 +59,9 @@ def load_config(config_path: Path) -> Dict[str, Any]:
             "blacklist": "config/blacklist.txt",
             "whitelist": "config/whitelist.txt",
             "output_dir": "output",
+            "cache_dir": "data/cache",
         },
+        "remote_sources": [],
     }
 
     if HAS_YAML and config_path.exists():
@@ -86,6 +90,16 @@ def main() -> int:
         default=None,
         help="Diretório de saída para os arquivos compilados",
     )
+    parser.add_argument(
+        "--offline",
+        action="store_true",
+        help="Não tentar baixar feeds remotos; usar apenas cache existente e arquivos locais.",
+    )
+    parser.add_argument(
+        "--force-download",
+        action="store_true",
+        help="Forçar novo download de feeds remotos ignorando ETags em cache.",
+    )
     args = parser.parse_args()
 
     project_root = Path(__file__).resolve().parent.parent
@@ -94,9 +108,11 @@ def main() -> int:
     config = load_config(config_file)
     metadata = config.get("metadata", {})
     files_cfg = config.get("files", {})
+    remote_urls = config.get("remote_sources", []) or []
 
     blacklist_file = project_root / files_cfg.get("blacklist", "config/blacklist.txt")
     whitelist_file = project_root / files_cfg.get("whitelist", "config/whitelist.txt")
+    cache_dir = project_root / files_cfg.get("cache_dir", "data/cache")
     
     if args.output_dir:
         output_dir = args.output_dir if args.output_dir.is_absolute() else (project_root / args.output_dir)
@@ -110,26 +126,55 @@ def main() -> int:
     print(f"📁 Raiz do Projeto: {project_root}")
     print("=" * 70)
 
-    # 1. Leitura e parsing dos arquivos de entrada
-    print(f"[*] Lendo blacklist manual: {blacklist_file.relative_to(project_root)}...")
-    raw_blacklist_entries = parse_file(blacklist_file)
-    raw_domains = [e.cleaned for e in raw_blacklist_entries if not e.is_wildcard]
-    raw_wildcards = [e.cleaned for e in raw_blacklist_entries if e.is_wildcard]
+    # 1. Obter feeds remotos (se configurados)
+    source_files: List[Path] = []
+    if blacklist_file.exists():
+        source_files.append(blacklist_file)
 
+    if remote_urls:
+        print(f"[*] Verificando {len(remote_urls)} feeds remotos...")
+        downloaded_paths = fetch_all_sources(
+            remote_urls=remote_urls,
+            cache_dir=cache_dir,
+            force=args.force_download,
+            offline=args.offline,
+        )
+        source_files.extend(downloaded_paths)
+
+    # 2. Leitura e parsing de todas as fontes
+    total_raw_entries = 0
+    all_domains: List[str] = []
+    all_wildcards: List[str] = []
+
+    for src_file in source_files:
+        try:
+            rel_name = src_file.relative_to(project_root)
+        except ValueError:
+            rel_name = src_file.name
+        print(f"[*] Processando: {rel_name}...")
+        entries = parse_file(src_file)
+        total_raw_entries += len(entries)
+        for e in entries:
+            if e.is_wildcard:
+                all_wildcards.append(e.cleaned)
+            else:
+                all_domains.append(e.cleaned)
+
+    # 3. Leitura da Whitelist
     print(f"[*] Lendo whitelist: {whitelist_file.relative_to(project_root)}...")
     whitelist_domains = parse_whitelist(whitelist_file)
 
-    # 2. Otimização e Deduplicação via Trie
+    # 4. Otimização e Deduplicação via Trie
     print("[*] Executando deduplicação e otimização por Trie de subdomínios...")
     opt_domains, opt_wildcards, redundancies = deduplicate_and_optimize(
-        domains=raw_domains,
-        wildcards=raw_wildcards,
+        domains=all_domains,
+        wildcards=all_wildcards,
         whitelist=whitelist_domains,
     )
 
     redirect_ip = metadata.get("redirect_ip", "0.0.0.0")
 
-    # 3. Geração dos arquivos de saída
+    # 5. Geração dos arquivos de saída
     outputs = {
         "adguard.txt": export_adguard(opt_domains, opt_wildcards, metadata),
         "pihole.txt": export_domains(opt_domains, metadata),
@@ -146,16 +191,17 @@ def main() -> int:
             f.write(content)
         print(f"  [+] Gerado: {dest.relative_to(project_root)} ({len(content.splitlines())} linhas)")
 
-    # 4. Atualizar blocklist.txt na raiz para compatibilidade retroativa
+    # 6. Atualizar blocklist.txt na raiz para compatibilidade retroativa
     root_blocklist = project_root / "blocklist.txt"
     with open(root_blocklist, "w", encoding="utf-8") as f:
         f.write(outputs["adguard.txt"])
     print(f"  [+] Atualizado para retrocompatibilidade: blocklist.txt")
 
-    # 5. Resumo estatístico
+    # 7. Resumo estatístico
     print("=" * 70)
     print("📊 RESUMO DA COMPILAÇÃO:")
-    print(f"  • Total bruto de regras carregadas: {len(raw_blacklist_entries)}")
+    print(f"  • Fontes processadas: {len(source_files)} arquivo(s)")
+    print(f"  • Total bruto de regras carregadas: {total_raw_entries}")
     print(f"  • Regras na Whitelist: {len(whitelist_domains)}")
     print(f"  • Redundâncias eliminadas (subdomínios/duplicatas): {redundancies}")
     print(f"  • Domínios FQDN únicos ativos: {len(opt_domains)}")

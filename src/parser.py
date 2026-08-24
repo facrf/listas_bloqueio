@@ -6,7 +6,7 @@ from dataclasses import dataclass
 import ipaddress
 from pathlib import Path
 import re
-from typing import List, Optional, Set, Tuple
+from typing import List, Optional, Set, Tuple, Union
 
 
 @dataclass(frozen=True)
@@ -154,9 +154,6 @@ def normalize_domain(raw_line: str) -> Optional[RuleEntry]:
         is_wildcard=is_wildcard,
         is_whitelist=is_whitelist,
     )
-
-
-from typing import List, Optional, Set, Tuple, Union
 
 
 def parse_file(file_path: Union[Path, str]) -> List[RuleEntry]:

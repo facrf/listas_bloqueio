@@ -70,11 +70,13 @@ listas_bloqueio/
 ├── src/
 │   ├── parser.py            # Validação FQDN, higienização e suporte IDN
 │   ├── deduplicator.py      # Algoritmo Trie para poda de subdomínios redundantes
+│   ├── downloader.py        # Gerenciador de cache com suporte a ETag/304
 │   ├── exporter.py          # Gerador multi-formato (AdGuard, Pi-hole, Hosts, Unbound)
 │   └── build.py             # Orquestrador CLI de compilação
 ├── output/                  # Listas compiladas e prontas para consumo
 ├── tests/                   # Testes unitários automatizados (pytest)
 ├── .github/workflows/       # CI/CD para compilação automática a cada push
+├── pyproject.toml           # Configuração de build e integração pytest
 ├── AGENTS.md                # Governança e regras de arquitetura para IAs
 └── README.md                # Documentação do projeto
 ```
@@ -94,7 +96,14 @@ pytest -v
 
 ### 3. Compilar as Listas
 ```bash
+# Compilação padrão (com download/verificação de cache de feeds externos)
 python3 src/build.py
+
+# Compilação offline (usa apenas cache local e listas manuais)
+python3 src/build.py --offline
+
+# Forçar novo download de feeds remotos
+python3 src/build.py --force-download
 ```
 
 ---
