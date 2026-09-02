@@ -70,6 +70,8 @@
 ||vortex.data.microsoft.com^
 ||weptpuddingcurdle.com^
 
-! Sites desonestos:
+! Sites desonestos/forcam cadastro e termos obscuros:
 ! ==============================================================================
 ||pdfsimpli.com^
+||remove.bg^
+
