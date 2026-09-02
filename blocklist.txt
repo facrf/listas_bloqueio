@@ -69,3 +69,7 @@
 ||v20.events.data.microsoft.com^
 ||vortex.data.microsoft.com^
 ||weptpuddingcurdle.com^
+
+! Sites desonestos:
+! ==============================================================================
+||pdfsimpli.com^
