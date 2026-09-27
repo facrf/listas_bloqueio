@@ -70,6 +70,27 @@
 ||vortex.data.microsoft.com^
 ||weptpuddingcurdle.com^
 
+! 2026-09 - Pop-up site de anime
+||gv-cn.com^
+||gv-cn.net^
+||gv-cn.org^
+||gv-cn.tv^
+||gv-asia.com^
+||gv-hd.com^
+||gv-app.net^
+||cn-gv.com^
+||cn-drama.com^
+||cn-media.tv^
+||dramaboxdb.com^
+||dramabox.app^
+||reelshort.com^
+||reelshort.tv^
+||shortmax.tv^
+||shortmax.net^
+||snackvideo.com^
+||goodshort.com^
+||goodshort.tv^
+
 ! Sites desonestos/forcam cadastro e termos obscuros:
 ! ==============================================================================
 ||pdfsimpli.com^
