@@ -109,6 +109,10 @@
 ! ==============================================================================
 ||pdfsimpli.com^
 ||remove.bg^
+||pulaus.site^
+||gopekp.online^
+||pakdee.ink^
+||akfvustajpz.in^
 
 
 ! Borda específica da Akamai usada pela rede de anúncios
