@@ -102,9 +102,25 @@
 ||ldzeykgjjbvmqh.com^
 ||d3mzokty951c5w.cloudfront.net^
 
+! CDN de scripts intrusivos
+||resjscdn.com^
 
 ! Sites desonestos/forcam cadastro e termos obscuros:
 ! ==============================================================================
 ||pdfsimpli.com^
 ||remove.bg^
+
+
+! Borda específica da Akamai usada pela rede de anúncios
+||e230598.b.akamaiedge.net^
+||a1944.dscr.akamai.net^
+
+! Ingress de telemetria/rastreamento corporativo da Alibaba
+||ingress.alibabacorp.com^
+
+
+
+
+
+
 
