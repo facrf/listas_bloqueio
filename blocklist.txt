@@ -113,6 +113,8 @@
 ||gopekp.online^
 ||pakdee.ink^
 ||akfvustajpz.in^
+||kopii.live^
+||akfvustajpz1.in^
 
 
 ! Borda específica da Akamai usada pela rede de anúncios
