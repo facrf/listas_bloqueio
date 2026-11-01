@@ -70,7 +70,7 @@
 ||vortex.data.microsoft.com^
 ||weptpuddingcurdle.com^
 
-! 2026-09 - Pop-up site de anime
+! 2026-10 - Pop-up site de anime
 ||gv-cn.com^
 ||gv-cn.net^
 ||gv-cn.org^
@@ -90,6 +90,18 @@
 ||snackvideo.com^
 ||goodshort.com^
 ||goodshort.tv^
+||rirki.com^
+
+! 2026-10 - Pop-up site de anime conhecidos
+||api.animefire.one/externals*
+
+! --- Redes de Anuncio / Popunders injetados ---
+||excavatenearbywand.com^
+||displayvertising.com^
+||ottzquufeqnef.com^
+||ldzeykgjjbvmqh.com^
+||d3mzokty951c5w.cloudfront.net^
+
 
 ! Sites desonestos/forcam cadastro e termos obscuros:
 ! ==============================================================================
